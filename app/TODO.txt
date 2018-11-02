@@ -1,0 +1,64 @@
+/*
+|--------------------------------------------------------------------------
+| Things to do TODO:
+|--------------------------------------------------------------------------
+| Implement Multi-tenancy! Single Database
+| Restrict data to logged in users
+| Restrict registration to Admins
+| Check out verification by emails
+| Create Charity Admin/Charity Super Admin and Charity Worker capabilities
+| Create laratables/datatables facility
+| Create Houses Table
+| Create Certificates Table
+| Create Rooms Table
+| Create Tenants Table
+| Create Casenotes Table
+| Validation of tables
+| Check out laracharts
+| Create some reports
+| Log changes to the tables
+| Check "bloat"? 8000 files?
+| Change Tenants database gender from male to Male & f to F following seeding
+| Check house_id when inserting certificates! (Counts too far!)
+| Improve Rooms Seeding - only allocate available rooms? Work out available rooms?
+|   Valid House/Room combination, Date in, out room where necessary
+| Improve Casenotes seeding - add relevant expiry date
+| Casenotes database only need to complete warnings when it is a warning!
+|
+|
+|
+
+resources/views/welcome.blade
+    NAME - Choose one!
+    Footer -- Create pages/blades info for the following links:-
+        Documentation
+        News
+        Help
+
+resources/views/Home
+    NAVBAR - Create pages/blades info for the following links:-
+        About
+        Help
+
+resources/views/pages/tables.blade
+    NAVBAR - Create pages/blades info for the following links:-
+        Certificates
+        Tenants
+        Rooms
+    NAVBAR - Create Warnings holder
+
+Currently
+    Houses List
+        Populates OK
+        Creates OK
+        Won't Update (unless everything is complete) - nothing happens (retrieves data) can
+        (Need to ensure that Gender and Landlord are nothing (if not completed))
+        Deletes OK
+    Casenotes
+        Doesn't populate tables
+    Warnings
+        Populates OK
+        Doesn't Create (can populate the form but "Save" does nothing)
+        Edit doesn't retrieve Tenant/User IDs but everything else is ok
+        Updates OK
+        Deletes - Assume it's ok - it always works! (Simple)
