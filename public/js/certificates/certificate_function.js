@@ -1,6 +1,8 @@
 "use strict";
 
 $(function() {
+    console.log("certificates_function.js - $ function");
+
     $("#certificates-table").DataTable({
         processing: true,
         serverSide: true,
@@ -32,6 +34,7 @@ $(function() {
     function refresh() {
         var table = $("#certificates-table").DataTable();
         table.ajax.reload(null, false);
+        console.log("certificates_function.js - refresh");
     }
 
     function cleaner() {
@@ -41,6 +44,7 @@ $(function() {
         $(".type").val("");
         $(".cert_no").val("");
         $(".issued").val("");
+        console.log("certificates_function.js - cleaner");
     }
 
     function token() {
@@ -54,6 +58,7 @@ $(function() {
     //create
     $(document).on("click", ".create", function(e) {
         e.preventDefault();
+        console.log("certificates_function.js - create");
 
         cleaner();
         $("#modalAdd form :input").val(""); //clear any values before loading?
@@ -66,6 +71,8 @@ $(function() {
         e.preventDefault();
         var id = $(this).attr("certificate_id");
 
+        console.log("certificates_function.js - edit - IN");
+
         token();
 
         $.ajax({
@@ -74,7 +81,6 @@ $(function() {
             success: function(result) {
                 if (result.success) {
                     let json = jQuery.parseJSON(result.data);
-
                     $(".id").val(json.id);
                     $(".house_id").val(json.house_id);
                     $(".type").val(json.type);
@@ -83,8 +89,21 @@ $(function() {
                     $("#modalEdit").modal("show");
                     $(".modal-title").text("Update Certificate");
                 }
+                console.log("result = ");
+                console.log(result);
+                console.log("result.data = " + result.data);
+                console.log("jQuery.parseJSON(result.data) = ");
+                console.log(jQuery.parseJSON(result.data));
+                console.log(
+                    "jQuery.parseJSON(result.data) = " +
+                        jQuery.parseJSON(result.data).house_id
+                );
+                var currentHouse = jQuery.parseJSON(result.data).house_id;
+                //alert($currentHouse);
+                console.log("current house = " + currentHouse);
             }
         });
+        console.log("certificates_function.js - edit - OUT");
     });
 
     //store
@@ -92,6 +111,7 @@ $(function() {
         e.preventDefault();
 
         var formData = $("form#store").serializeArray();
+        console.log("certificates_function.js - store");
 
         token();
 
@@ -124,6 +144,8 @@ $(function() {
 
         var formData = $("form#update").serializeArray();
 
+        console.log("certificates_function.js - update");
+
         token();
 
         var id = formData[0].value;
@@ -153,6 +175,7 @@ $(function() {
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
         var id = $(this).attr("certificate_id");
+        console.log("certificates_function.js - delete");
 
         swal({
             title: "Are you sure?",

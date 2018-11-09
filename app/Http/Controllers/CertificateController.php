@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Certificate;
 //use App\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CertificateController extends Controller
 {
@@ -16,6 +17,7 @@ class CertificateController extends Controller
     public function index()
     {
         return view('certificates.index');
+        Log::info("CertificateController - index");
     }
 
     /**
@@ -25,7 +27,7 @@ class CertificateController extends Controller
      */
     public function create()
     {
-
+        Log::info("CertificateController - create");
     }
 
     /**
@@ -38,6 +40,7 @@ class CertificateController extends Controller
     {
         try
         {
+            Log::info("CertificateController - store");
             Certificate::create($request->all());
 
             return response()->json(['success' => 'data is successfully added'], 200);
@@ -55,7 +58,7 @@ class CertificateController extends Controller
      */
     public function show(Certificate $certificate)
     {
-        //
+        Log::info("CertificateController - show");
     }
 
     /**
@@ -68,20 +71,37 @@ class CertificateController extends Controller
     {
         try
         {
-            //$MyHouse = \App\Certificate::find('id'); // Doesn't work - always null
-            //return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200);
 
-            //$house_list = House::pluck('address', 'id')->toArray(); // to create the select list
-            //$current_house = Input::old('house') ? Input::old('house') : $certificate->house->id;
+            //debugbar??
+            // The following works!
+            //Log::info("controller edit ");
+            //console.log("controller edit")}};
+            //Log::info("controller edit ".$result);
+            //Log::info($certificate->toJson());
 
-            //$current_house = house::get();
+            Log::info("CertificateController - edit");
+            Log::info("DOLLARcertificate->house_id = " . $certificate->house_id);
 
-            //return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200, 'current_house' => $current_house);
-            //return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson(), 'current_house' => $current_house], 200);
-            //return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson(), 'MyHouse' => $MyHouse], 200);
+            //This deosn't work
+            //window.alert("CertificateController - edit"); //or w script wrapper
+            //dd("CertificateController - edit");
+            //print_r("CertificateController - edit");
+            //{{var_dump("CertificateController - edit")}};
+            //var_dump("CertificateController - edit");
+            //dump("CertificateController - edit");
+            //error_log("CertificateController - edit");
 
-            return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200);
+            //Doesn't work
+            //<script>
+            //    console.log("CertificateController - edit");
+            //</script>
 
+//            console.log("CertificateController - edit"); //doesn't work
+
+            $currentHouse = $certificate->house_id;
+
+
+return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -99,6 +119,7 @@ class CertificateController extends Controller
     {
         try
         {
+            Log::info("CertificateController - update");
             $certificate = Certificate::findOrFail($certificate->id);
             $certificate->house_id = $request->house_id;
             $certificate->type = $request->type;
@@ -123,6 +144,7 @@ class CertificateController extends Controller
     {
         try
         {
+            Log::info("CertificateController - destroy");
             Certificate::destroy($certificate->id);
 
             return response()->json(['success' => 'data is successfully deleted'], 200);

@@ -100,9 +100,18 @@ Route::get(
 // https://stackoverflow.com/questions/45783086/laravel-how-to-populate-select-box-from-database
 Route::get(
     '/certificates', function () {
+        Log::info("Route /certificates function");
+
         $myhouses = \App\House::all();
         return view('certificates/index')
-            ->with(['myhouses' => $myhouses]);
+            ->with(['myhouses' => $myhouses, 'currentHouse' => 4]);
 //            ->with(['MyHouse' => $MyHouse]);
     }
 );
+
+// Trying to get a variable into the edit route?
+//Route::get(
+//    '/certificates', function () {
+
+//    }
+//)

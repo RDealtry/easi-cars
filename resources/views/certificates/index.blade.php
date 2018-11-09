@@ -1,3 +1,5 @@
+use Illuminate\Support\Facades\Log;
+
 @extends('layouts.master')
 
 @section('title')
@@ -34,7 +36,9 @@
                </thead>
             </table>
         </div>
-
+        <?php
+            Log::info("certificates/index.blade.php - thead");
+        ?>
     </div>
 
 
@@ -50,7 +54,10 @@
                 </div>
                 <form id="store">
                     <div class="modal-body">
-<!--
+                    <?php
+                        Log::info("certificates/index.blade.php - add");
+                    ?>
+                    <!--
                     <div class="form-group">
                             <label for="house_id">House_id</label>
                             <input type="number" class="form-control house_id" name="house_id" placeholder="Enter house_id">
@@ -94,7 +101,7 @@
     </div>
 
     {{-- modal for edit --}}
-    <div id="modalEdit" class="modal fade" role="dialog">
+        <div id="modalEdit" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -104,30 +111,32 @@
                 </div>
                 <form id="update">
                     <div class="modal-body">
-
+                        Hello {{ $currentHouse}}
+</br>
+                    <?php
+                        Log::info("certificates/index.blade.php - edit/update");
+                        //Log::info($certificate->house_id);
+                        //Log::info($certificate->house_id);
+                    ?>
                         <div class="form-group">
-                            <input type="hidden" name="id" class="id">
+                            <input type="hidden" name="id" class="id", id="id">
                         <div class="form-group">
                             <label for="house_id">House_id*</label>
                             <input type="text" class="form-control house_id" name="house_id" id="house_id" placeholder="Enter house_id" required>
                         </div>
+
                         <div class="form-group">
                             <label for="houses">House address*</label>
                             <select name="houses" id="houses" class="form-control houses" placeholder="Select house" required>
                                 <option disabled="true" value="choose">Choose House</option>
-                                    @foreach($myhouses as $myhouse )
-                                        <option value="{{ $myhouse->id }}" {{( $myhouse->id == old('house_id')) ? 'selected' : ''}}>{{ $myhouse->address }}</option>
+                                    @foreach($myhouses as $myhouse)
+                                        <option value="{{ $myhouse->id }}" {{($myhouse->id ==  $currentHouse) ? 'selected' : ''}}>{{ $myhouse->address }}</option>
                                     @endforeach
-
                             </select>
                         </div>
-
-<!--
-
--->
-
-                                </select>
-                        </div>
+            <?php
+                Log::info("certificates/index.blade.php - edit/update");
+//                Log::info($currentHouse); ?>
                         <div class="form-group">
                             <label for="type">Type*</label>
                             <select class="form-control type" id="type" name="type" required>
