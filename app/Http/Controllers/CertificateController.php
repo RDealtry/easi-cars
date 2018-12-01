@@ -16,8 +16,11 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        return view('certificates.index');
-        Log::info("CertificateController - index");
+        $myhouses = \App\House::all();
+        $data = array(
+            'myhouses' => $myhouses
+        );
+        return view('certificates.index')->with($data);
     }
 
     /**
@@ -69,43 +72,7 @@ class CertificateController extends Controller
      */
     public function edit(Certificate $certificate)
     {
-        try
-        {
-
-            //debugbar??
-            // The following works!
-            //Log::info("controller edit ");
-            //console.log("controller edit")}};
-            //Log::info("controller edit ".$result);
-            //Log::info($certificate->toJson());
-
-            Log::info("CertificateController - edit");
-            Log::info("DOLLARcertificate->house_id = " . $certificate->house_id);
-
-            //This deosn't work
-            //window.alert("CertificateController - edit"); //or w script wrapper
-            //dd("CertificateController - edit");
-            //print_r("CertificateController - edit");
-            //{{var_dump("CertificateController - edit")}};
-            //var_dump("CertificateController - edit");
-            //dump("CertificateController - edit");
-            //error_log("CertificateController - edit");
-
-            //Doesn't work
-            //<script>
-            //    console.log("CertificateController - edit");
-            //</script>
-
-//            console.log("CertificateController - edit"); //doesn't work
-
-            $currentHouse = $certificate->house_id;
-
-
-return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-
+        return response()->json(['success' => 'data is successfully retrieved', 'data' => $certificate->toJson()], 200);
     }
 
     /**

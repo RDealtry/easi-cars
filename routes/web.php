@@ -63,10 +63,6 @@ Route::group(
     }
 );
 
-//Route::get('/', function () {
-//    return view('houses.index');
-//});
-
 Route::resource('casenotes', 'CasenoteController');
 Route::get('casenotes_data/get_data', 'CasenoteGetController@index');
 Route::resource('houses', 'HouseController');
@@ -75,43 +71,3 @@ Route::resource('warnings', 'WarningController');
 Route::get('warnings_data/get_data', 'WarningGetController@index');
 Route::resource('certificates', 'CertificateController');
 Route::get('certificates_data/get_data', 'CertificateGetController@index');
-
-//Route::get('/test', 'testcontroller@test_query');
-
-
-Route::get(
-    '/test', function () {
-        //$houses = \App\House::all();
-        //return view('test_blade')->with(['houses' => $houses]);
-        $testvar = 1;
-        //$test = new Item;
-        $test = $testvar;
-
-        dd($test);
-        //Log::info($test);
-        //var_dump($test);
-
-
-    }
-);
-
-
-// To populate houses drop down in certificates "add" form
-// https://stackoverflow.com/questions/45783086/laravel-how-to-populate-select-box-from-database
-Route::get(
-    '/certificates', function () {
-        Log::info("Route /certificates function");
-
-        $myhouses = \App\House::all();
-        return view('certificates/index')
-            ->with(['myhouses' => $myhouses, 'currentHouse' => 4]);
-//            ->with(['MyHouse' => $MyHouse]);
-    }
-);
-
-// Trying to get a variable into the edit route?
-//Route::get(
-//    '/certificates', function () {
-
-//    }
-//)

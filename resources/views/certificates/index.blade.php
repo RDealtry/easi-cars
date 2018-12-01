@@ -111,13 +111,7 @@ use Illuminate\Support\Facades\Log;
                 </div>
                 <form id="update">
                     <div class="modal-body">
-                        Hello {{ $currentHouse}}
-</br>
-                    <?php
-                        Log::info("certificates/index.blade.php - edit/update");
-                        //Log::info($certificate->house_id);
-                        //Log::info($certificate->house_id);
-                    ?>
+
                         <div class="form-group">
                             <input type="hidden" name="id" class="id", id="id">
                         <div class="form-group">
@@ -130,13 +124,11 @@ use Illuminate\Support\Facades\Log;
                             <select name="houses" id="houses" class="form-control houses" placeholder="Select house" required>
                                 <option disabled="true" value="choose">Choose House</option>
                                     @foreach($myhouses as $myhouse)
-                                        <option value="{{ $myhouse->id }}" {{($myhouse->id ==  $currentHouse) ? 'selected' : ''}}>{{ $myhouse->address }}</option>
+                                        <option value="{{ $myhouse->id }}">{{ $myhouse->address }}</option>
                                     @endforeach
                             </select>
                         </div>
-            <?php
-                Log::info("certificates/index.blade.php - edit/update");
-//                Log::info($currentHouse); ?>
+
                         <div class="form-group">
                             <label for="type">Type*</label>
                             <select class="form-control type" id="type" name="type" required>

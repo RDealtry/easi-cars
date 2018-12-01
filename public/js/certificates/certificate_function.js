@@ -88,19 +88,10 @@ $(function() {
                     $(".issued").val(json.issued);
                     $("#modalEdit").modal("show");
                     $(".modal-title").text("Update Certificate");
+                    $(".houses").val(json.house_id);
+                    console.log("json house id:", json.house_id);
                 }
-                console.log("result = ");
-                console.log(result);
-                console.log("result.data = " + result.data);
-                console.log("jQuery.parseJSON(result.data) = ");
-                console.log(jQuery.parseJSON(result.data));
-                console.log(
-                    "jQuery.parseJSON(result.data) = " +
-                        jQuery.parseJSON(result.data).house_id
-                );
-                var currentHouse = jQuery.parseJSON(result.data).house_id;
-                //alert($currentHouse);
-                console.log("current house = " + currentHouse);
+                console.log("result = " + result);
             }
         });
         console.log("certificates_function.js - edit - OUT");
