@@ -17,8 +17,10 @@ class CertificateController extends Controller
     public function index()
     {
         $myhouses = \App\House::all();
+        $myhousesSelectList = \App\House::orderBy('address', 'asc')->pluck('address', 'id');
         $data = array(
-            'myhouses' => $myhouses
+            'myhouses' => $myhouses,
+            'myhousesSelectList' => $myhousesSelectList
         );
         return view('certificates.index')->with($data);
     }

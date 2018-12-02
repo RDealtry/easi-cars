@@ -13,6 +13,7 @@
         "hyn/multi-tenant": "^5.3",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.4.0",
         "pclzip/pclzip": "^2.8",
         "tcg/voyager": "^1.1",
         "yajra/laravel-datatables-oracle": "^8.8"

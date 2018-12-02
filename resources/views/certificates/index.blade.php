@@ -120,13 +120,15 @@ use Illuminate\Support\Facades\Log;
                         </div>
 
                         <div class="form-group">
-                            <label for="houses">House address*</label>
+                            {{ Form::label('houses', 'House address*') }}
+                            {{ Form::select('houses', $myhousesSelectList, 0, array('id' => 'houses', 'class' => 'form-control houses', 'data-placeholder' => 'Select house', 'required' => '')) }}
+                            <!--<label for="houses">House address*</label>
                             <select name="houses" id="houses" class="form-control houses" placeholder="Select house" required>
                                 <option disabled="true" value="choose">Choose House</option>
                                     @foreach($myhouses as $myhouse)
                                         <option value="{{ $myhouse->id }}">{{ $myhouse->address }}</option>
                                     @endforeach
-                            </select>
+                            </select>-->
                         </div>
 
                         <div class="form-group">
