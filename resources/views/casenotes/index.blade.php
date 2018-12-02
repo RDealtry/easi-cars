@@ -25,11 +25,11 @@
         <div class="table-responsive">
             <table id="casenotes-table" class="table">
                 <thead>
-                    <td>Tenant</td>
-                    <td>Staff Member</td>
-                    <td>Note</td>
-                    <td>Casenote date</td>
-                    <td>Action</td>
+                    <th>Tenant</th>
+                    <th>Staff Member</th>
+                    <th>Note</th>
+                    <th>Casenote date</th>
+                    <th style="min-width: 114px;">Action</th>
                 </thead>
             </table>
         </div>

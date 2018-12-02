@@ -3,7 +3,7 @@
 //$casenote = Casenote::with('tenant_name')->get();
 
 $(function() {
-    $("#casenotes-table").DataTable({
+    var caseNotesTable = $("#casenotes-table").DataTable({
         processing: true,
         serverSide: true,
         ajax: "casenotes_data/get_data",
@@ -27,6 +27,30 @@ $(function() {
                 searchable: false
             }
         ]
+    });
+
+    var newHtml = '<tr role="row">';
+    $("#casenotes-table thead tr:eq(0) th").each(function(i) {
+        var title = $(this).text();
+        var columnContent =
+            '<input type="text" placeholder="Search ' + title + '" />';
+        if (title === "Action") {
+            columnContent = "";
+        }
+        newHtml += "<td>" + columnContent + "</td>";
+    });
+    newHtml += "</tr>";
+    $("#casenotes-table thead").append(newHtml);
+
+    $("#casenotes-table thead tr:eq(1) td").each(function(i) {
+        $("input", this).on("keyup change", function() {
+            if (caseNotesTable.column(i).search() !== this.value) {
+                caseNotesTable
+                    .column(i)
+                    .search(this.value)
+                    .draw();
+            }
+        });
     });
 
     function refresh() {
